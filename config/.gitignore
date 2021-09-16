@@ -3,6 +3,6 @@
 #static/audio/separate
 db.sqlite3
 .vscode
-/venv
+venv/
 ### Django ###
 __pycache__
