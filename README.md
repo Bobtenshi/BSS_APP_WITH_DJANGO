@@ -2,12 +2,14 @@
 - ブラインド音源分離（BSS）体験アプリ
 
 # Req.
-- python 3.6.8
+- python 3.8.9
 - django
 
-# Usage
-- ???
+# よく使うコマンド（自分用）
+- pip install -r .\requirements.txt
+- python manage.py runserver
 
 # Deploy to Heroku（自分用）
-'''hogehoge
+'''
+hogehoge
 '''
