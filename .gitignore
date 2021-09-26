@@ -1,0 +1,12 @@
+#staticfiles
+#tatic/audio/mix
+#static/audio/separate
+db.sqlite3
+.vscode
+venv/
+### Django ###
+__pycache__
+
+staticfiles
+config/local_settings.py
+db.sqlite3
