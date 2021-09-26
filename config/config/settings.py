@@ -130,3 +130,16 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# DEBUG = True
+DEBUG = False  # Trueから変更
+try:
+    from config.local_settings import *
+except ImportError:
+    pass
+
+if not DEBUG:
+    import django_heroku  # 追加
+
+    django_heroku.settings(locals())  # 追加

@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include  # includeを追加
+from . import views
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("", include("bss.urls")),
+    # path("admin/", admin.site.urls),
+    path("", views.index),  #
+    # path("bss/", include("bss.urls")),
+    # path("", include("bss.urls")),
 ]
