@@ -6,3 +6,7 @@ db.sqlite3
 venv/
 ### Django ###
 __pycache__
+
+staticfiles
+config/local_settings.py
+db.sqlite3
