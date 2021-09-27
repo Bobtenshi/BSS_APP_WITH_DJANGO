@@ -147,3 +147,17 @@ if not DEBUG:
     import django_heroku  # 追加
 
     django_heroku.settings(locals())  # 追加
+
+
+# deploy
+# python manage.py runserver --insecure
+#
+# echo web: gunicorn config.wsgi --log-file - > Procfile
+# pip freeze > requirements.txt
+# echo python-3.8.9 > runtime.txt
+#
+#
+# heroku config:set DISABLE_COLLECTSTATIC=1
+# git push heroku master
+# heroku ps:scale web=1
+
