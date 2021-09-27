@@ -27,8 +27,9 @@ SECRET_KEY = "django-insecure-s%k(=%d^t*^ci15ws7-z5n(2o1q1-cg67sruvf&mw-l*y2%k!(
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "bss-app-with-django.herokuapp.com",
-    "127.0.0.1",
+    # "bss-app-with-django.herokuapp.com",
+    # "127.0.0.1",
+    "*",
 ]
 
 # Application definition
