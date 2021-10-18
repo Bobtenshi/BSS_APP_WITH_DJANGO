@@ -1,0 +1,126 @@
+{% extends 'bss/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+  <div class="row justify-content-center mt-4 mb-4">
+    <p style="text-align:center" class="col-12 subtitle">Original sources</p>
+  </div>
+
+  <div class="row justify-content-center mt-4 mb-4">
+    <div class="col-lg-4 d-flex justify-content-center">
+      <figure>
+        <figcaption>Listen to the audio1:</figcaption>
+        <audio controls src="{% static 'audio/original/orig1.wav' %}">
+          Your browser does not support the
+          <code>audio</code> element.
+        </audio>
+      </figure>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-4 mb-4">
+    <div class="col-lg-4 d-flex justify-content-center">
+      <figure>
+        <figcaption>Listen to the audio2:</figcaption>
+        <audio controls src="{% static 'audio/original/orig2.wav' %}">
+          Your browser does not support the
+          <code>audio</code> element.
+        </audio>
+      </figure>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-4 mb-4">
+    <div class="col-lg-4 d-flex justify-content-center">
+      <figure>
+        <figcaption>Listen to the audio3:</figcaption>
+        <audio controls src="{% static 'audio/original/orig3.wav' %}">
+          Your browser does not support the
+          <code>audio</code> element.
+        </audio>
+      </figure>
+    </div>
+  </div>
+
+</div>
+
+
+
+<!-- <div class="row d-flex">
+    <div class="col-12 d-flex justify-content-center"><b>2つ</b>の音源を選択してください</div>
+    <form id="my_form" class="col-12 d-flex justify-content-center" action="{% url 'bss:mix' %}" method="POST">
+      {% csrf_token %}
+      <input type="checkbox" name="nameSelectedSources" value=1 data-target="foo" class="ch1" checked>
+      <label for="check-1">audio1</label>
+      <input type="checkbox" name="nameSelectedSources" value=2 data-target="foo" class="ch1">
+      <label for="check-2">audio2</label>
+      <input type="checkbox" name="nameSelectedSources" value=3 data-target="foo" class="ch1" checked>
+      <label for="check-3">audio3</label>
+      <input class="btn" type="submit" value="決定">
+    </form>
+  </div> -->
+<div class="text_center">
+  <p><b>2つ</b>の音源を選択してください</p>
+</div>
+
+<form class="form-block" id="my_form" action="" method="POST">
+  {% csrf_token %}
+
+  <label for="check-1">
+    <input type="checkbox" name="nameSelectedSources" value=1 data-target="foo" class="ch1" checked>
+    <div class="check_box_scripts">audio1</div>
+  </label>
+
+  <label for="check-1">
+    <input type="checkbox" name="nameSelectedSources" value=2 data-target="foo" class="ch1" checked>
+    <div class="check_box_scripts">audio2</div>
+  </label>
+  <label for="check-1">
+    <input type="checkbox" name="nameSelectedSources" value=3 data-target="foo" class="ch1">
+    <div class="check_box_scripts">audio3</div>
+  </label>
+  <label>
+    <input class="btn" type="submit" value="決定">
+  </label>
+</form>
+
+<div class="row d-flex justify-content-center">
+  <div id="mixture_content">
+
+  </div>
+</div>
+</div>
+
+{% endblock %}
+
+<!--                       -->
+<!--      ajax script      -->
+<!--                       -->
+{% block extrajs %}
+<script>
+
+  // ajax mix
+  $("form").submit(function (event) {
+    event.preventDefault();
+    var form = $(this);
+    $.ajax({
+      url: "{% url 'bss:mix' %}",
+      method: form.prop("method"),
+      data: form.serialize(),
+      timeout: 10000,
+      dataType: "text",
+    })
+      .done(function (data) {
+        //alert("done");
+        $('#mixture_content').html(data);
+      })
+      .fail(function () {
+        // 通信失敗時の処理を記述
+        alert("Can not mix...");
+      });
+  });
+</script>
+
+
+{% endblock %}

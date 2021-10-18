@@ -1,0 +1,52 @@
+body {
+  background-color: #000000;
+  background-color: #FFFFFF;
+  font-family: 'Sawarabi Mincho', sans-serif; }
+p{
+  font-family: 'Sawarabi Mincho', sans-serif;
+  font-size: 130%;
+}
+ul{
+  font-family: 'Sawarabi Mincho', sans-serif;
+  font-size: 100%;
+}
+li{
+  font-family: 'Sawarabi Mincho', sans-serif;
+  font-size: 100%;
+}
+a{
+  font-family: 'Sawarabi Mincho', sans-serif;
+  font-size: 100%;
+}
+
+label{
+  display:block;
+  position:relative;
+  padding-left:1em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+label input{
+  display:inline;
+  text-align: center;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  margin:auto;
+}
+
+.text_center{
+  display:inline;
+  text-align: center;
+}
+
+.check_box_scripts{
+  display:inline;
+  text-align: center;
+}
+
+.card{
+  padding:0;
+}

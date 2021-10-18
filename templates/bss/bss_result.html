@@ -1,0 +1,57 @@
+{% load static %}
+
+<div class="container">
+  <div class="row d-flex justify-content-center mb-4">
+    {{ bss_method }} has finished.
+  </div>
+</div>
+
+<hr>
+
+
+<div class="container">
+  <div class="row justify-content-center mt-4 mb-4">
+    <p style="text-align:center" class="col-12 subtitle">Separated sources</p>
+
+    <div class="col-lg-4 d-flex justify-content-center">
+      <figure>
+        <figcaption>Listen to the audio1:</figcaption>
+        <audio controls src="{% static 'audio/separate/sep1.wav' %}">
+          Your browser does not support the
+          <code>audio</code> element.
+        </audio>
+      </figure>
+    </div>
+
+    <div class="col-lg-4 d-flex justify-content-center">
+      <figure>
+        <figcaption>Listen to the audio2:</figcaption>
+        <audio controls src="{% static 'audio/separate/sep2.wav' %}">
+          Your browser does not support the
+          <code>audio</code> element.
+        </audio>
+      </figure>
+    </div>
+  </div>
+</div>
+
+<hr>
+<hr>
+
+<div class="container mt-5 mb-5">
+  <div class="row d-flex justify-content-center">
+    <div id="bss_content">
+      End
+    </div>
+  </div>
+</div>
+
+<!--                       -->
+<!--      ajax script      -->
+<!--                       -->
+{% block extrajs %}
+<script>
+
+</script>
+
+{% endblock %}
