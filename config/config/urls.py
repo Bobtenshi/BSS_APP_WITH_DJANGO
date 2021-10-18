@@ -20,6 +20,6 @@ from . import views
 urlpatterns = [
     # path("admin/", admin.site.urls),
     path("", views.index),  #
-    # path("bss/", include("bss.urls")),
+    path("bss/", include("bss.urls")),
     # path("", include("bss.urls")),
 ]

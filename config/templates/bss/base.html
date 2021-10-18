@@ -2,9 +2,12 @@
 {% load static %}
 <!doctype html>
 <html lang="ja">
+
 <head>
+  <!-- favicon -->
+  <link rel="icon" href="{% static 'img/favicon.ico' %}">
   <link rel="icon" href="../../static/img/favicon.ico">
-  <title>Bobtenshi workplace</title>
+  <title>bobtenshi workplace</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,16 +15,31 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
     integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
+
 <body>
   <div class="container mt-5 mb-5">
     <div class="row d-flex justify-content-center">
       <p style="text-align:center" class="col-12 subtitle">Source separation experience</p>
-
     </div>
   </div>
+
   {% block content %}
   {% endblock %}
+
+
+  <!--<div class="container">
+    <div class="card">
+      <div class="card-header">
+        プログレスバーサンプル
+      </div>
+      <div class="card-body">
+        <div id="progress">プログレスバー表示部分</div>
+        <div id="result">処理結果表示部分</div>
+      </div>
+    </div>
+  </div>-->
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -35,4 +53,25 @@
     crossorigin="anonymous"></script>
   {% block extrajs %}{% endblock %}
 </body>
+
+<script>
+  // ミリ秒間待機する
+  function sleep2(ms) {
+    const d1 = new Date();
+    while (true) {
+      const d2 = new Date();
+      if (d2 - d1 > ms) {
+        break;
+      }
+    }
+  }
+
+  //プログレスバーの表示
+  function ShowProgressBar2(itr, Itaration) {
+    percent = (itr / Itaration) * 100
+    console.log("Data Loaded: " + percent);
+    $("#progress").replaceWith(percent)
+    //$("#result").replaceWith(percent)
+  }
+</script>
 </html>
