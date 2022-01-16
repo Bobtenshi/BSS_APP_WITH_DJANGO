@@ -14,7 +14,7 @@
 
     <div class="col-lg-6 d-flex justify-content-center">
       <figure>
-        <figcaption>Listen to the audio1:</figcaption>
+        <figcaption>Listen to the mixure audio1:</figcaption>
         <audio controls src="{% static 'audio/mix/mix0.wav' %}">
           Your browser does not support the
           <code>audio</code> element.
@@ -24,7 +24,7 @@
 
     <div class="col-lg-6 d-flex justify-content-center">
       <figure>
-        <figcaption>Listen to the audio2:</figcaption>
+        <figcaption>Listen to the mixture audio2:</figcaption>
         <audio controls src="{% static 'audio/mix/mix1.wav' %}">
           Your browser does not support the
           <code>audio</code> element.
@@ -50,11 +50,11 @@
       {% csrf_token %}
       <label for="check-1">
         <input type="checkbox" name="hoge" value="IVA" data-target="foo" class="ch1" checked>
-        <div class="check_box_scripts">独立ベクトル分析（IVA）</div>
-      </label>
+        独立ベクトル分析（IVA）
+      </label><br>
       <label for="check-1">
         <input type="checkbox" name="hoge" value="ILRMA" data-target="foo" class="ch1">
-        <div class="check_box_scripts">独立低ランク行列分析（ILRMA）</div>
+        独立低ランク行列分析（ILRMA）
       </label><br>
       <label>
         <input class="btn" type="submit" value="決定">
