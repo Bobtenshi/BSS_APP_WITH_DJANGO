@@ -34,174 +34,185 @@
   </div>
 </div>
 
-<form class="form-block" id="my_form" action="" method="POST">
-  {% csrf_token %}
 
-  <label for="check-1">
-    <input type="checkbox" name="hoge" value="IVA" data-target="foo" class="ch1" checked>
-    <div class="check_box_scripts">IVA</div>
-  </label>
-  <label for="check-1">
-    <input type="checkbox" name="hoge" value="ILRMA" data-target="foo" class="ch1">
-    <div class="check_box_scripts">ILRMA</div>
-  </label>
-  <label>
-    <input class="btn" type="submit" value="決定">
-  </label>
-
-</form>
-
-
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-8 card ">
-
-      <div class="card-header">
-        BSSの進捗表示
-      </div>
-      <div class="card-body">
-        <div id="progress">待機中</div>
-      </div>
-
+<div class="row justify-content-center mt-4 mb-4">
+  <div class="col-12 d-flex justify-content-center">
+    <div class="text_center">
+      <p><b>
+          <font color="red">1つ</font>
+        </b>の音源分離手法を選択してください</p>
     </div>
   </div>
-</div>
 
 
-<div class="container">
-  <div class="row d-flex justify-content-center">
-    <div class="col-12" id="result"></div>
+  <div class="col-12 d-flex justify-content-center">
+    <form class="form-block" id="my_form" action="" method="POST">
+      {% csrf_token %}
+      <label for="check-1">
+        <input type="checkbox" name="hoge" value="IVA" data-target="foo" class="ch1" checked>
+        <div class="check_box_scripts">独立ベクトル分析（IVA）</div>
+      </label>
+      <label for="check-1">
+        <input type="checkbox" name="hoge" value="ILRMA" data-target="foo" class="ch1">
+        <div class="check_box_scripts">独立低ランク行列分析（ILRMA）</div>
+      </label><br>
+      <label>
+        <input class="btn" type="submit" value="決定">
+      </label>
+    </form>
   </div>
-</div>
 
-<div class="container">
-  <div class="row d-flex justify-content-center">
-    <div id="bss_content">
-      Just a moment, please.
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-8 card ">
+
+        <div class="card-header">
+          BSSの進捗表示
+        </div>
+        <div class="card-body">
+          <div id="progress">待機中</div>
+        </div>
+
+      </div>
     </div>
   </div>
-</div>
 
-<!--                       -->
-<!--      ajax script      -->
-<!--                       -->
 
-{% block extrajs %}
-<script>
-  let pk = "hoge"
-  let n_itr = "hoge"
-  let bss_method = "hoge"
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="col-12" id="result"></div>
+    </div>
+  </div>
 
-  async function main(url) {
-    //await setup(url);
-    await ajax_setup(url);
-    await console.log("kakunin pk:" + pk + ", n_itr:" + n_itr)
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div id="bss_content">
+        Just a moment, please.
+      </div>
+    </div>
+  </div>
 
-    for (let itr = 1; itr <= n_itr + 1; itr++) {
-      await ShowProgressBar2(pk, itr)
-      await cycle_bss2(pk, bss_method, itr, n_itr)
-      await console.log(itr + "番目の処理が完了！！")
+  <!--                       -->
+  <!--      ajax script      -->
+  <!--                       -->
+
+  {% block extrajs %}
+  <script>
+    let pk = "hoge"
+    let n_itr = "hoge"
+    let bss_method = "hoge"
+
+    async function main(url) {
+      //await setup(url);
+      await ajax_setup(url);
+      await console.log("kakunin pk:" + pk + ", n_itr:" + n_itr)
+
+      for (let itr = 1; itr <= n_itr + 1; itr++) {
+        await ShowProgressBar2(pk, itr)
+        await cycle_bss2(pk, bss_method, itr, n_itr)
+        await console.log(itr + "番目の処理が完了！！")
+      }
     }
-  }
 
-  function ajax_setup(url) {
-    return new Promise(function (resolve, reject) {
-      $.ajax({
-        url: url,
-        method: "GET",
-        timeout: 10000,
-        //dataType: "objext",
-      })
-        .done(function (data) {
-          //alert("done");
-          console.log("before pk:" + pk + ", n_itr:" + n_itr)
-          pk = data.pk
-          n_itr = data.N_ITR
-          console.log("after pk:" + pk + ", n_itr:" + n_itr)
-          resolve();    // 処理完了
+    function ajax_setup(url) {
+      return new Promise(function (resolve, reject) {
+        $.ajax({
+          url: url,
+          method: "GET",
+          timeout: 10000,
+          //dataType: "objext",
         })
-        .fail(function () {
-          // 通信失敗時の処理を記述
-          alert("...");
-        });
-    });
-  }
+          .done(function (data) {
+            //alert("done");
+            console.log("before pk:" + pk + ", n_itr:" + n_itr)
+            pk = data.pk
+            n_itr = data.N_ITR
+            console.log("after pk:" + pk + ", n_itr:" + n_itr)
+            resolve();    // 処理完了
+          })
+          .fail(function () {
+            // 通信失敗時の処理を記述
+            alert("...");
+          });
+      });
+    }
 
-  function ShowProgressBar2(pk, itr) {
-    return new Promise(function (resolve, reject) {
-      $.ajax({
-        url: "{% url 'bss:show_progress' %}",
-        data: { 'progress_pk': pk },
-        method: "GET",
-        timeout: 1000000,
-        //dataType: "objext",
-      })
-        .done(function (data) {
-          console.log("ShowProgressBar: " + itr);
-          $("#progress").replaceWith(data);
-          resolve();    // 処理完了
+    function ShowProgressBar2(pk, itr) {
+      return new Promise(function (resolve, reject) {
+        $.ajax({
+          url: "{% url 'bss:show_progress' %}",
+          data: { 'progress_pk': pk },
+          method: "GET",
+          timeout: 1000000,
+          //dataType: "objext",
         })
-        .fail(function () {
-          // 通信失敗時の処理を記述
-          alert("...");
-        });
-    });
-  }
+          .done(function (data) {
+            console.log("ShowProgressBar: " + itr);
+            $("#progress").replaceWith(data);
+            resolve();    // 処理完了
+          })
+          .fail(function () {
+            // 通信失敗時の処理を記述
+            alert("...");
+          });
+      });
+    }
 
-  function cycle_bss2(pk, bss_method, itr, n_itr) {
-    return new Promise(function (resolve, reject) {
-      $.ajax({
-        url: "{% url 'bss:cycle_bss' %}",
-        data: {
-          'progress_pk': pk,
-          'bss_method': bss_method,
-          'itr': itr,
-          'n_itr': n_itr
-        },
-        method: "GET",
-        timeout: 1000000,
-        //dataType: "objext",
-      })
-        .done(function (data) {
-          if (itr == n_itr) {
-            $("#bss_content").replaceWith(data);
-          }
-          console.log("cycle_bss: " + itr);
-          resolve();    // 処理完了
+    function cycle_bss2(pk, bss_method, itr, n_itr) {
+      return new Promise(function (resolve, reject) {
+        $.ajax({
+          url: "{% url 'bss:cycle_bss' %}",
+          data: {
+            'progress_pk': pk,
+            'bss_method': bss_method,
+            'itr': itr,
+            'n_itr': n_itr
+          },
+          method: "GET",
+          timeout: 1000000,
+          //dataType: "objext",
         })
-        .fail(function () {
-          // 通信失敗時の処理を記述
-          alert("...");
-        });
+          .done(function (data) {
+            if (itr == n_itr) {
+              $("#bss_content").replaceWith(data);
+            }
+            console.log("cycle_bss: " + itr);
+            resolve();    // 処理完了
+          })
+          .fail(function () {
+            // 通信失敗時の処理を記述
+            alert("...");
+          });
+      });
+    }
+
+
+
+
+    //*****************************
+    // main
+    //*****************************
+
+    const progresshtml = '<div>BSS has finished.</div>';
+    $("form").submit(function (event) {
+      event.preventDefault();
+      var form = $(this);
+      let timer_id = 0;
+      let url = "{% url 'bss:setup' %}"
+      bss_method = $('[name="hoge"]:checked').val()
+
+      //進捗管理インスタンス作成部分
+
+      console.log("pk:" + pk + ", n_itr:" + n_itr)
+      //console.log("get process fin")
+      //set(url);
+      //setup(url);
+
+      main(url);
+
+
     });
-  }
 
-
-
-
-  //*****************************
-  // main
-  //*****************************
-
-  const progresshtml = '<div>BSS has finished.</div>';
-  $("form").submit(function (event) {
-    event.preventDefault();
-    var form = $(this);
-    let timer_id = 0;
-    let url = "{% url 'bss:setup' %}"
-    bss_method = $('[name="hoge"]:checked').val()
-
-    //進捗管理インスタンス作成部分
-
-    console.log("pk:" + pk + ", n_itr:" + n_itr)
-    //console.log("get process fin")
-    //set(url);
-    //setup(url);
-
-    main(url);
-
-
-  });
-
-</script>
-{% endblock %}
+  </script>
+  {% endblock %}

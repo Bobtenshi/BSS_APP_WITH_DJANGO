@@ -60,36 +60,43 @@
       <input class="btn" type="submit" value="決定">
     </form>
   </div> -->
-<div class="text_center">
-  <p><b>2つ</b>の音源を選択してください</p>
-</div>
 
-<form class="form-block" id="my_form" action="" method="POST">
-  {% csrf_token %}
 
-  <label for="check-1">
-    <input type="checkbox" name="nameSelectedSources" value=1 data-target="foo" class="ch1" checked>
-    <div class="check_box_scripts">audio1</div>
-  </label>
-
-  <label for="check-1">
-    <input type="checkbox" name="nameSelectedSources" value=2 data-target="foo" class="ch1" checked>
-    <div class="check_box_scripts">audio2</div>
-  </label>
-  <label for="check-1">
-    <input type="checkbox" name="nameSelectedSources" value=3 data-target="foo" class="ch1">
-    <div class="check_box_scripts">audio3</div>
-  </label>
-  <label>
-    <input class="btn" type="submit" value="決定">
-  </label>
-</form>
-
-<div class="row d-flex justify-content-center">
-  <div id="mixture_content">
-
+<div class="row justify-content-center mt-4 mb-4">
+  <div class="col-12 d-flex justify-content-center">
+    <div class="text_center">
+      <p><b>
+          <font color="red">2つ</font>
+        </b>の音源を選択してください</p>
+    </div>
   </div>
-</div>
+
+  <div class="col-12 d-flex justify-content-center">
+    <form class="form-block" id="my_form" action="" method="POST">
+      {% csrf_token %}
+      <label for="check-1">
+        <input type="checkbox" name="nameSelectedSources" value=1 data-target="foo" class="ch1" checked>
+        <div class="check_box_scripts">audio1</div>
+      </label>
+
+      <label for="check-1">
+        <input type="checkbox" name="nameSelectedSources" value=2 data-target="foo" class="ch1" checked>
+        <div class="check_box_scripts">audio2</div>
+      </label>
+      <label for="check-1">
+        <input type="checkbox" name="nameSelectedSources" value=3 data-target="foo" class="ch1">
+        <div class="check_box_scripts">audio3</div>
+      </label><br>
+      <label>
+        <input class="btn" type="submit" value="決定">
+      </label>
+    </form>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div id="mixture_content">
+
+    </div>
+  </div>
 </div>
 
 {% endblock %}
