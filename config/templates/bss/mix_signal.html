@@ -11,7 +11,9 @@
 <div class="container">
   <div class="row justify-content-center mt-4 mb-4">
     <p style="text-align:center" class="col-12 subtitle">Mixture sources</p>
+  </div>
 
+  <div class="row justify-content-center mt-4 mb-4">
     <div class="col-lg-6 d-flex justify-content-center">
       <figure>
         <figcaption>Listen to the mixure audio1:</figcaption>
@@ -21,7 +23,9 @@
         </audio>
       </figure>
     </div>
+  </div>
 
+  <div class="row justify-content-center mt-4 mb-4">
     <div class="col-lg-6 d-flex justify-content-center">
       <figure>
         <figcaption>Listen to the mixture audio2:</figcaption>
@@ -48,17 +52,15 @@
   <div class="col-12 d-flex justify-content-center">
     <form class="form-block" id="my_form" action="" method="POST">
       {% csrf_token %}
-      <label for="check-1">
-        <input type="checkbox" name="hoge" value="IVA" data-target="foo" class="ch1" checked>
-        独立ベクトル分析（IVA）
-      </label><br>
-      <label for="check-1">
-        <input type="checkbox" name="hoge" value="ILRMA" data-target="foo" class="ch1">
-        独立低ランク行列分析（ILRMA）
-      </label><br>
-      <label>
-        <input class="btn" type="submit" value="決定">
-      </label>
+      <input type="checkbox" name="hoge" value="IVA" data-target="foo" class="ch1" checked>
+      独立ベクトル分析（IVA）
+      <br>
+
+      <input type="checkbox" name="hoge" value="ILRMA" data-target="foo" class="ch1">
+      独立低ランク行列分析（ILRMA）
+      <br>
+      <input class="btn" type="submit" value="決定">
+
     </form>
   </div>
 
