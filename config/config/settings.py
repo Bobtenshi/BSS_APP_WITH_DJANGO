@@ -29,11 +29,13 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = env("DEBUG")
 # DEBUG = False
 
-ALLOWED_HOSTS = [
-    "bss-demo-django.herokuapp.com",
-    "127.0.0.1",
-    "*",
-]
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+#ALLOWED_HOSTS = [
+    #"bss-demo-django.herokuapp.com",
+    #"127.0.0.1",
+    #"13.113.105.185",
+    #"*",
+#]
 
 # Application definition
 
@@ -86,7 +88,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-
+"""
 DATABASES = {
     "default": env.db(),
     # "default": {
@@ -99,14 +101,14 @@ DATABASES = {
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "djangogirls",
-        "USER": "name",
-        "PASSWORD": "",
+        "NAME": "djangodb",
+        "USER": "django",
+        "PASSWORD": "django",
         "HOST": "localhost",
         "PORT": "",
     }
 }
-"""
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

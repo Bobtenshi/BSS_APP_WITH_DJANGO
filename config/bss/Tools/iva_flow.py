@@ -6,7 +6,7 @@ from .Function.projection_back import projection_back
 import numpy as np
 from sklearn.metrics import mean_squared_error as MSE
 from scipy.io.wavfile import write
-
+import os
 fft_size = 4096
 shift_size = 2048
 fs = 24000
@@ -24,6 +24,9 @@ def main_iva(update_progress_func, itr, n_itr):
         for idx in range(data.shape[0]):
             x[:, idx] = data[idx, :]
 
+
+
+        os.makedirs("static/audio/separate/", exist_ok=True)
         # STFT
         X, window = stft(x, fft_size, shift_size)
         np.save("static/audio/separate/window.npy", window)

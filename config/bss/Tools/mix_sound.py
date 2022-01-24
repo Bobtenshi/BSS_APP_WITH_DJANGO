@@ -4,8 +4,8 @@ import itertools
 import copy
 from scipy.io.wavfile import read, write
 import numpy as np
-import pyroomacoustics as pra
-import librosa
+#import pyroomacoustics as pra
+#import librosa
 
 
 def test():
@@ -119,7 +119,6 @@ def make_revarb_sounds(selectedSourcesList):
             fs,
             mix_signals[i, :].astype("float32"),
         )
-        # librosa.output.write_wav('static/audio/mix/mix'+str(i)+'.wav', mix_signals[i, :], fs)
 
     # for bss
     np.save("static/audio/mix/ref_signals.npy", ref_signals)
