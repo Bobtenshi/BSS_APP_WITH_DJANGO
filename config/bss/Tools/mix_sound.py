@@ -21,7 +21,7 @@ def mix(request, selectedSourcesList):
     #
 
     if len(selectedSourcesList) == 2:
-        make_revarb_sounds(selectedSourcesList)
+        # make_revarb_sounds(selectedSourcesList)
         return (
             "audio"
             + selectedSourcesList[0]

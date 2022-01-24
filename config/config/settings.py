@@ -20,19 +20,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# env = environ.Env()
-# env.read_env(os.path.join(BASE_DIR, ".env"))
+env = environ.Env()
+env.read_env(os.path.join(BASE_DIR, ".env"))
 
-# SECRET_KEY = env("SECRET_KEY")
-SECRET_KEY = "django-insecure-s%k(=%d^t*^ci15ws7-z5n(2o1q1-cg67sruvf&mw-l*y2%k!("
+SECRET_KEY = env("SECRET_KEY")
+# SECRET_KEY = "django-insecure-s%k(=%d^t*^ci15ws7-z5n(2o1q1-cg67sruvf&mw-l*y2%k!("
 
-# DEBUG = env("DEBUG")
-DEBUG = False
+DEBUG = env("DEBUG")
+# DEBUG = False
 
 ALLOWED_HOSTS = [
     "bss-demo-django.herokuapp.com",
     "127.0.0.1",
-    # "*",
+    "*",
 ]
 
 # Application definition
@@ -86,7 +86,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-"""
+
 DATABASES = {
     "default": env.db(),
     # "default": {
@@ -106,6 +106,7 @@ DATABASES = {
         "PORT": "",
     }
 }
+"""
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
